@@ -32,7 +32,10 @@
         <label for="message_thread_id" class="form-label">{{ $t("telegramMessageThreadID") }}</label>
         <input id="message_thread_id" v-model="$parent.notification.telegramMessageThreadID" type="text" class="form-control">
         <p class="form-text">{{ $t("telegramMessageThreadIDDescription") }}</p>
-
+        
+        <input id="custom_message_send" v-model="$parent.notification.telegramCustomMessage" type="text" class="form-control">
+        <p class="form-text">Insert your message</p>
+        
         <div class="form-check form-switch">
             <input v-model="$parent.notification.telegramSendSilently" class="form-check-input" type="checkbox">
             <label class="form-check-label">{{ $t("telegramSendSilently") }}</label>

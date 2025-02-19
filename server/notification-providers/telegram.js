@@ -14,7 +14,7 @@ class Telegram extends NotificationProvider {
         try {
             let params = {
                 chat_id: notification.telegramChatID,
-                text: msg,
+                text: msg + ' ' + notification.telegramCustomMessage,
                 disable_notification: notification.telegramSendSilently ?? false,
                 protect_content: notification.telegramProtectContent ?? false,
             };
