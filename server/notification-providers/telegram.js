@@ -12,9 +12,17 @@ class Telegram extends NotificationProvider {
         const url = "https://api.telegram.org";
 
         try {
+
+            /*
+            * Append custom MSG to msg
+            */
+            if (notification.telegramCustomMessage) {
+                msg = msg + "\n" + notification.telegramCustomMessage;
+            }
+            
             let params = {
                 chat_id: notification.telegramChatID,
-                text: msg + ' ' + notification.telegramCustomMessage,
+                text: msg,
                 disable_notification: notification.telegramSendSilently ?? false,
                 protect_content: notification.telegramProtectContent ?? false,
             };
