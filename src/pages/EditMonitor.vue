@@ -659,6 +659,22 @@
                                     {{ $t("gamedigGuessPortDescription") }}
                                 </div>
                             </div>
+                            <!-- Resolve Family -->
+                            <!-- TCP Port / Ping / DNS -->
+                            <div v-if="monitor.type === 'port' || monitor.type === 'ping' || monitor.type === 'dns' " class="my-3">
+                                <label for="ip-family" class="form-label">{{ $t("IP Address Family") }}</label>
+                                <VueMultiselect
+                                    id="ip-family"
+                                    v-model="monitor.ipFamily"
+                                    :options="ipFamilyOptions.map(i => i.id)"
+                                    :custom-label="opt => ipFamilyOptions.find(e => e.id === opt).name"
+                                    :multiple="false"
+                                    :preselect-first="true"
+                                    :max-height="500"
+                                    :allow-empty="false"
+                                    :taggable="false"
+                                ></VueMultiselect>
+                            </div>
 
                             <!-- Ping packet size -->
                             <div v-if="monitor.type === 'ping'" class="my-3">
@@ -1547,6 +1563,23 @@ message HealthCheckResponse {
             "aws",
         ];
 
+        let ipFamilyOptions = [
+            {
+                id: 0,
+                name: "auto-detect",
+            },
+            {
+                id: 4,
+                name: "IPv4",
+            },
+            {
+                id: 6,
+                name: "IPv6",
+            },
+        ];
+
+        this.ipFamilyOptions = ipFamilyOptions;
+        
         for (let i = 100; i <= 999; i++) {
             acceptedStatusCodeOptions.push(i.toString());
         }
